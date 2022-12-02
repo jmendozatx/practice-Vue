@@ -22,20 +22,20 @@
 
     <v-main>
       <v-container class="pt-8">
-        <add-vehicle />
+        <VehiclePage />
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import AddVehicle from "./components/AddVehicle";
+import VehiclePage from "./pages/VehiclePage";
 
 export default {
   name: "App",
 
   components: {
-    AddVehicle,
+    VehiclePage,
   },
 
   data: () => ({
@@ -48,6 +48,43 @@ export default {
 @media (min-width: 960px) {
   .container {
     max-width: 960px;
+  }
+}
+
+.custom-loader {
+  animation: loader 1s infinite;
+  display: flex;
+}
+@-moz-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 </style>
