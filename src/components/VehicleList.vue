@@ -1,6 +1,6 @@
 <template>
   <div class="vehicle-list">
-    <h3 class="text-h5 mb-4">Active vehicles</h3>
+    <h3 class="text-h5 mb-4">Active vehicles ({{ vehicles.length }})</h3>
     <v-card
       v-for="vehicle in vehicles"
       :key="vehicle.vin"
@@ -24,40 +24,70 @@
         <v-btn @click="openDeleteModal(vehicle)" color="error" class="mr-4">
           <v-icon> mdi-trash-can </v-icon>
         </v-btn>
-        <v-dialog v-model="deleteModal" width="500">
-          <v-card>
-            <v-card-title class="text-h5"> Are you sure? </v-card-title>
 
-            <v-card-text>
-              This will delete the {{ selectedVehicle.year }}
-              {{ selectedVehicle.make }}
-              {{ selectedVehicle.model }}</v-card-text
-            >
-
-            <v-divider></v-divider>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                class="ma-1"
-                color="grey"
-                text
-                @click="deleteModal = false"
-              >
-                Cancel
-              </v-btn>
-              <v-btn color="error" text @click="deleteVehicle(vehicle)">
-                Confirm Delete
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-        <v-btn @click="editVehicle(vehicle)" color="success">
+        <v-btn @click="openEditVehicleModal(vehicle)" color="success">
           <v-icon left> mdi-pencil </v-icon>
           Edit
         </v-btn>
       </div>
     </v-card>
+
+    <!-- Modals -->
+    <v-dialog v-model="deleteModal" width="500">
+      <v-card>
+        <v-card-title class="text-h5"> Are you sure? </v-card-title>
+        <v-card-text>
+          This will delete the {{ selectedVehicle.year }}
+          {{ selectedVehicle.make }}
+          {{ selectedVehicle.model }}</v-card-text
+        >
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn class="ma-1" color="grey" text @click="deleteModal = false">
+            Cancel
+          </v-btn>
+          <v-btn color="error" @click="deleteVehicle()"> Confirm Delete </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="editModal" width="500">
+      <v-card>
+        <v-card-title class="text-h5 mb-3">
+          Edit Vehicle Information
+        </v-card-title>
+        <v-card-text>
+          <v-text-field
+            label="VIN"
+            v-model="selectedVehicle.vin"
+            outlined
+            max-width="400px" />
+          <v-text-field
+            label="Year"
+            v-model="selectedVehicle.year"
+            outlined
+            max-width="400px" />
+          <v-text-field
+            label="Make"
+            v-model="selectedVehicle.make"
+            outlined
+            max-width="400px" />
+          <v-text-field
+            label="Model"
+            v-model="selectedVehicle.model"
+            outlined
+            max-width="400px"
+        /></v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn class="ma-1" color="grey" text @click="editModal = false">
+            Cancel
+          </v-btn>
+          <v-btn color="success" @click="updateVehicle()"> Save </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -67,6 +97,7 @@ export default {
 
   data: () => ({
     deleteModal: false,
+    editModal: false,
     selectedVehicle: {},
   }),
 
@@ -86,14 +117,18 @@ export default {
     },
 
     deleteVehicle() {
+      this.$store.commit("deleteVehicle", this.selectedVehicle.vin);
       this.deleteModal = false;
-      alert(
-        `${this.selectedVehicle.year} ${this.selectedVehicle.make} ${this.selectedVehicle.model}`
-      );
     },
 
-    editVehicle(vehicle) {
-      alert(`${vehicle.year} ${vehicle.make} ${vehicle.model} `);
+    openEditVehicleModal(vehicle) {
+      this.selectedVehicle = vehicle;
+      this.editModal = true;
+    },
+
+    updateVehicle() {
+      this.editModal = false;
+      this.$store.commit("updateVehicle", this.selectedVehicle);
     },
   },
 };

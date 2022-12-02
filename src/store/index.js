@@ -23,7 +23,31 @@ export default new Vuex.Store({
      ]
   },
   mutations: {
+    addVehicle (state, newVehicle) {
+        state.vehicles.unshift({
+            vin: newVehicle.vin,
+            year:newVehicle.year,
+            make:newVehicle.make,
+            model:newVehicle.model,
+            bodyClassId: newVehicle.bodyClassId
+        })
+    },
 
+    deleteVehicle (state, vehicleVin) {
+        let removedEl = state.vehicles.findIndex((x) => x.vin == vehicleVin);
+        state.vehicles.splice(removedEl, 1);
+    },
+
+    updateVehicle (state, vehicle) {
+        let vin = vehicle.vin;
+        let findEl = state.vehicles.find((x) => x.vin == vin);
+        findEl.vin =  vehicle.vin;
+        findEl.year = vehicle.year;
+        findEl.make = vehicle.make;
+        findEl.model = vehicle.model;
+        findEl.bodyClassId = vehicle.bodyClassId;
+
+    },
   },
   actions: {
 

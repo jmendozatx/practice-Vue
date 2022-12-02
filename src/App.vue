@@ -45,6 +45,10 @@ export default {
 </script>
 
 <style lang="scss">
+.v-main {
+  background: #f1f1f1;
+}
+
 @media (min-width: 960px) {
   .container {
     max-width: 960px;

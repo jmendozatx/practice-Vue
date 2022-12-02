@@ -2,20 +2,13 @@
   <div class="vehicle-page">
     <!-- TODO: TypeScript -->
     <!-- TODO: Jest, Vitest -->
-    <!-- TODO: TypeScript -->
-    <!-- TODO: Ability to add more vin's -->
-    <!-- TODO: When the Save button is clicked, the information for the VIN should be saved to the local state and
-persisted.
- -->
-    <!-- TODO: When the Cancel button is clicked, all edits should be discarded and things should be returned to their
-previous saved state. -->
-    <div class="add-vehicle">
+    <div class="add-vehicle mb-4">
       <v-row class="text-center">
         <h2 class="text-h4 blue--text text--darken-2 mb-4">Add Vehicle(s)</h2>
       </v-row>
       <v-row>
         <v-col>
-          <v-tabs grow tile>
+          <v-tabs grow tile transparent>
             <v-tab href="#single-vin">Single Vin</v-tab>
             <v-tab-item id="single-vin">
               <add-vehicle />
