@@ -1,13 +1,13 @@
 <template>
   <v-card flat class="pa-10">
-    <p class="mb-4 text-center">
-      Enter your vin to search for your vehicle
-      <!-- <br />Samples 
-      <ul>
-        <li>4A4AP3AUXDE006568</li>
-      <li>3AKJHHDR3KSKX6689</li>
-      <li>1FTFW1CF0CKD99953</li></ul> -->
-    </p>
+    <div class="description mb-4 text-center">
+      <p>
+        Enter your vin to search for your vehicle.<br />
+        Your vehicle will be automatically added to the list of Active Vehicles
+        below.
+      </p>
+    </div>
+
     <div class="vin-input-container">
       <v-text-field
         prepend-icon="mdi-car-outline"
@@ -31,6 +31,13 @@
         </template>
       </v-btn>
     </div>
+
+    <a
+      href="https://vingenerator.org/"
+      target="_blank"
+      class="grey--text text--lighten-1"
+      >VIN Generator
+    </a>
     <div class="error" v-show="error">{{ this.errorMsg }}</div>
   </v-card>
 </template>

@@ -1,37 +1,38 @@
 <template>
   <div class="vehicle-list">
     <h3 class="text-h5 mb-4">Active vehicles ({{ vehicles.length }})</h3>
-    <v-card
-      v-for="vehicle in vehicles"
-      :key="vehicle.vin"
-      class="pa-4 mb-4 d-flex justify-content align-center"
-    >
-      <v-img
-        contain
-        class="mr-4"
-        max-width="150"
-        :src="require(`../assets/BodyClassImages/${vehicle.bodyClassId}.png`)"
-      />
-      <div class="vehicle-details-container">
-        <strong class="vehicle-vin">{{ vehicle.vin }}</strong>
-        <div>
-          {{ vehicle.year }}
-          {{ vehicle.make }}
-          {{ vehicle.model }}
+    <transition-group name="fade" mode="out-in">
+      <v-card
+        v-for="vehicle in vehicles"
+        :key="vehicle.vin"
+        class="pa-4 mb-4 d-flex justify-content align-center"
+      >
+        <v-img
+          contain
+          class="mr-4"
+          max-width="150"
+          :src="require(`../assets/BodyClassImages/${vehicle.bodyClassId}.png`)"
+        />
+        <div class="vehicle-details-container">
+          <strong class="vehicle-vin">{{ vehicle.vin }}</strong>
+          <div>
+            {{ vehicle.year }}
+            {{ vehicle.make }}
+            {{ vehicle.model }}
+          </div>
         </div>
-      </div>
-      <div class="vehicle-actions ml-auto">
-        <v-btn @click="openDeleteModal(vehicle)" color="error" class="mr-4">
-          <v-icon> mdi-trash-can </v-icon>
-        </v-btn>
+        <div class="vehicle-actions ml-auto">
+          <v-btn @click="openDeleteModal(vehicle)" color="error" class="mr-4">
+            <v-icon> mdi-trash-can </v-icon>
+          </v-btn>
 
-        <v-btn @click="openEditVehicleModal(vehicle)" color="success">
-          <v-icon left> mdi-pencil </v-icon>
-          Edit
-        </v-btn>
-      </div>
-    </v-card>
-
+          <v-btn @click="openEditVehicleModal(vehicle)" color="success">
+            <v-icon left> mdi-pencil </v-icon>
+            Edit
+          </v-btn>
+        </div>
+      </v-card>
+    </transition-group>
     <!-- Modals -->
     <v-dialog v-model="deleteModal" width="500">
       <v-card>
@@ -138,6 +139,15 @@ export default {
 .vehicle-list {
   .vehicle-details-container {
     text-transform: uppercase;
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0;
   }
 }
 </style>
