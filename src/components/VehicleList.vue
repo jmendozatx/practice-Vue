@@ -1,7 +1,7 @@
 <template>
   <div class="vehicle-list">
     <h3 class="text-h5 mb-4">Active vehicles ({{ vehicles.length }})</h3>
-    <transition-group name="fade" mode="out-in">
+    <transition-group name="fade" v-if="vehicles.length >= 1">
       <v-card
         v-for="vehicle in vehicles"
         :key="vehicle.vin"
@@ -25,7 +25,6 @@
           <v-btn @click="openDeleteModal(vehicle)" color="error" class="mr-4">
             <v-icon> mdi-trash-can </v-icon>
           </v-btn>
-
           <v-btn @click="openEditVehicleModal(vehicle)" color="success">
             <v-icon left> mdi-pencil </v-icon>
             Edit
@@ -33,6 +32,11 @@
         </div>
       </v-card>
     </transition-group>
+    <div v-else>
+      <v-card class="pa-4">
+        <strong>There are no vehicles to display</strong>
+      </v-card>
+    </div>
     <!-- Modals -->
     <v-dialog v-model="deleteModal" width="500">
       <v-card>
@@ -62,23 +66,27 @@
             label="VIN"
             v-model="selectedVehicle.vin"
             outlined
-            max-width="400px" />
+            max-width="400px"
+          />
           <v-text-field
             label="Year"
             v-model="selectedVehicle.year"
             outlined
-            max-width="400px" />
+            max-width="400px"
+          />
           <v-text-field
             label="Make"
             v-model="selectedVehicle.make"
             outlined
-            max-width="400px" />
+            max-width="400px"
+          />
           <v-text-field
             label="Model"
             v-model="selectedVehicle.model"
             outlined
             max-width="400px"
-        /></v-card-text>
+          />
+        </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>

@@ -3,7 +3,7 @@
     <v-app-bar app>
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
+          alt="policyfly Logo"
           class="shrink mr-2"
           contain
           :src="require('./assets/policyflycolorful.png')"
@@ -34,13 +34,11 @@ import VehiclePage from "./pages/VehiclePage";
 export default {
   name: "App",
 
+  data: () => ({}),
+
   components: {
     VehiclePage,
   },
-
-  data: () => ({
-    //
-  }),
 };
 </script>
 

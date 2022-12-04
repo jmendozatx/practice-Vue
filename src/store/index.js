@@ -22,6 +22,13 @@ export default new Vuex.Store({
         }
      ]
   },
+
+  getters: {
+    vehicleList(state) {
+        return state.vehicles
+    }
+  },
+
   mutations: {
     addVehicle (state, newVehicle) {
         state.vehicles.unshift({
@@ -48,10 +55,13 @@ export default new Vuex.Store({
         findEl.bodyClassId = vehicle.bodyClassId;
 
     },
+
   },
+
   actions: {
 
   },
+  
   modules: {
   }
 })

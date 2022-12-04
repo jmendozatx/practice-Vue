@@ -8,10 +8,10 @@
       </v-row>
       <v-row>
         <v-col>
-          <v-tabs grow tile transparent>
+          <v-tabs grow tile>
             <v-tab href="#single-vin">Single Vin</v-tab>
             <v-tab-item id="single-vin">
-              <add-vehicle />
+              <AddVehicle />
             </v-tab-item>
             <v-tab disabled>Bulk Vin</v-tab>
             <v-tab disabled>Manual Entry</v-tab>
@@ -19,7 +19,7 @@
         </v-col>
       </v-row>
     </div>
-    <vehicle-list v-if="vehicles.length >= 1" :vehicles="vehicles" />
+    <VehicleList :vehicles="vehicles" />
   </div>
 </template>
 
@@ -28,19 +28,18 @@ import AddVehicle from "../components/AddVehicle.vue";
 import VehicleList from "../components/VehicleList.vue";
 export default {
   name: "VehiclePage",
+
   components: {
     AddVehicle,
     VehicleList,
   },
+
   data: () => ({}),
 
   computed: {
     vehicles() {
-      return this.$store.state.vehicles;
+      return this.$store.getters.vehicleList;
     },
   },
 };
 </script>
-
-<style>
-</style>

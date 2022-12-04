@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="pa-10">
+  <v-card flat class="add-vehicle pa-10">
     <div class="description mb-4 text-center">
       <p>
         Enter your vin to search for your vehicle.<br />
@@ -63,7 +63,6 @@ export default {
   }),
 
   methods: {
-    // display data
     search() {
       this.loading = true;
       this.error = null;
@@ -111,10 +110,12 @@ export default {
 </script>
 
 <style lang="scss">
-.vin-input-container {
-  display: flex;
-  justify-content: center;
-  max-width: 500px;
-  margin: 0 auto;
+.add-vehicle {
+  .vin-input-container {
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
 }
 </style>
