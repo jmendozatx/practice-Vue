@@ -1,5 +1,5 @@
-# Test for DevJob
-This was a test for a UI Developer position. The prompt was to create my own UI, where a user can input their vehicles VIN, and an API call would be made to get the make, model, and year of the vehicle and display it into a vehicle list.
+# Vue Code Sample
+A simple app where a user can input their vehicles VIN, and an API call would be made to get the make, model, and year of the vehicle and display it into a vehicle list. Uses Vuex for the store.
 
 ## Project setup
 ```
