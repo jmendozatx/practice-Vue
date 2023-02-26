@@ -1,20 +1,19 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <div class="d-flex align-center">
+      <div class="d-flex align-center logo">
         <v-img
-          alt="policyfly Logo"
-          class="shrink mr-2"
+          alt="joseph mendoza Logo"
+          class="mr-3"
           contain
-          :src="require('./assets/policyflycolorful.png')"
+          :src="require('./assets/logo.svg')"
           transition="scale-transition"
-          width="160px"
+          width="40px"
         />
+        <span>Joseph</span> Mendoza
       </div>
-
       <v-spacer></v-spacer>
-
-      <v-btn href="https://www.policyfly.com/" target="_blank" text>
+      <v-btn href="https://josephmendoza.com/" target="_blank" text>
         <span class="mr-2">Website</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
@@ -45,6 +44,17 @@ export default {
 <style lang="scss">
 .v-main {
   background: #f1f1f1;
+}
+.logo {
+  .v-image {
+    box-shadow: 0 0 10px 2px #05f184;
+    border-radius: 10px;
+  }
+
+  span {
+    font-weight: bold;
+    margin-right: 5px;
+  }
 }
 
 @media (min-width: 960px) {
